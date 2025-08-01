@@ -46,39 +46,6 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
-        <style jsx>{`
-          .footer {
-            background: #1e293b;
-            color: white;
-            padding: 3rem 0 1rem;
-            margin-top: 4rem;
-          }
-          .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-          }
-          .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-          }
-          .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.3s ease;
-          }
-          .footer-links a:hover {
-            color: white;
-          }
-          .footer-bottom {
-            border-top: 1px solid #374151;
-            padding-top: 1rem;
-            text-align: center;
-            color: #94a3b8;
-          }
-        `}</style>
       </body>
     </html>
   )

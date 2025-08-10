@@ -12,7 +12,7 @@ export default function SocialPage() {
 
       <section className="section-padding">
         <div className="container">
-          <div className="grid grid-2">
+          <div className="grid grid-3">
             {/* Instagram Hub */}
             <div className="card social-platform">
               <div className="platform-header">

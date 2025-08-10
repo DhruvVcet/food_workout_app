@@ -19,7 +19,6 @@ export default function Navigation() {
             <Link href="/plans" className="nav-link">Plans</Link>
             <Link href="/exercises" className="nav-link">Exercises</Link>
             <Link href="/specialized" className="nav-link">Specialized</Link>
-            <Link href="/social" className="nav-link">Social Hub</Link>
             <Link href="/about" className="nav-link">About</Link>
           </div>
 

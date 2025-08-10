@@ -267,6 +267,13 @@ export default function SocialPage() {
                       <p className="content-time">1:00 PM</p>
                     </div>
                   </div>
+                  <div className="content-item youtube">
+                    <span className="platform-badge">YT</span>
+                    <div>
+                      <p className="content-title">Live Q&A Session</p>
+                      <p className="content-time">8:00 PM</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -288,6 +295,13 @@ export default function SocialPage() {
                     <div>
                       <p className="content-title">Building Wellness Programs</p>
                       <p className="content-time">3:00 PM</p>
+                    </div>
+                  </div>
+                  <div className="content-item youtube">
+                    <span className="platform-badge">YT</span>
+                    <div>
+                      <p className="content-title">Healthy Meal Prep Guide</p>
+                      <p className="content-time">5:00 PM</p>
                     </div>
                   </div>
                 </div>

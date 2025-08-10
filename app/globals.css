@@ -527,4 +527,17 @@ body {
     width: 100%;
     max-width: 300px;
   }
+
+  .hiit-exercises, .low-impact-options, .flexibility-sections {
+    grid-template-columns: 1fr;
+  }
+
+  .workout-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .workout-meta {
+    align-items: flex-start;
+  }
 }

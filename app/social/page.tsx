@@ -124,6 +124,62 @@ export default function SocialPage() {
                 View LinkedIn Content
               </Link>
             </div>
+
+            {/* YouTube Hub */}
+            <div className="card social-platform">
+              <div className="platform-header">
+                <div className="platform-icon youtube">🎥</div>
+                <div>
+                  <h2 className="text-2xl font-bold gradient-text">YouTube Fitness</h2>
+                  <p className="text-lg">FitLife Pro Channel</p>
+                </div>
+              </div>
+
+              <p className="mb-6">Comprehensive workout videos, exercise tutorials, nutrition guides, and live fitness sessions for visual learners.</p>
+
+              <div className="content-schedule">
+                <h3 className="text-lg font-semibold mb-4">Weekly Upload Schedule</h3>
+                <div className="schedule-list">
+                  <div className="schedule-item">
+                    <strong>Monday:</strong> Full Body Workout - Complete training sessions
+                  </div>
+                  <div className="schedule-item">
+                    <strong>Tuesday:</strong> Exercise Tutorials - Proper form and technique
+                  </div>
+                  <div className="schedule-item">
+                    <strong>Wednesday:</strong> Live Q&A - Real-time fitness advice
+                  </div>
+                  <div className="schedule-item">
+                    <strong>Thursday:</strong> Nutrition Education - Healthy cooking demos
+                  </div>
+                  <div className="schedule-item">
+                    <strong>Friday:</strong> Success Stories - Member transformations
+                  </div>
+                  <div className="schedule-item">
+                    <strong>Weekend:</strong> Fitness challenges and community workouts
+                  </div>
+                </div>
+              </div>
+
+              <div className="platform-stats">
+                <div className="stat">
+                  <span className="stat-number">100K+</span>
+                  <span className="stat-label">Subscribers</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-number">500+</span>
+                  <span className="stat-label">Videos</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-number">2M+</span>
+                  <span className="stat-label">Total Views</span>
+                </div>
+              </div>
+
+              <Link href="/social/youtube" className="btn btn-primary w-full mt-6">
+                View YouTube Content
+              </Link>
+            </div>
           </div>
 
           {/* Content Calendar */}

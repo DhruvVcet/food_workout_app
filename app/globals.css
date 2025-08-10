@@ -655,4 +655,8 @@ body {
   .workout-meta {
     align-items: flex-start;
   }
+
+  .meal-plan-grid {
+    grid-template-columns: 1fr;
+  }
 }

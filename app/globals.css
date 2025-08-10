@@ -1001,29 +1001,4 @@ body {
     font-size: 1.5rem;
   }
 
-  .platform-header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .platform-stats {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .calendar-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .videos-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .series-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .upload-schedule {
-    grid-template-columns: 1fr;
-  }
 }

@@ -32,7 +32,6 @@ export default function RootLayout({
                   <a href="/plans">Plans</a>
                   <a href="/exercises">Exercises</a>
                   <a href="/specialized">Specialized</a>
-                  <a href="/social">Social Hub</a>
                 </div>
               </div>
               <div className="footer-section">

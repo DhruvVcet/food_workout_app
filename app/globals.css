@@ -900,4 +900,25 @@ body {
   .meal-plan-grid {
     grid-template-columns: 1fr;
   }
+
+  .auth-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .auth-card {
+    padding: 2rem;
+  }
+
+  .auth-section {
+    padding: 1rem 0;
+  }
+
+  .benefit-list {
+    gap: 1.5rem;
+  }
+
+  .social-login {
+    gap: 0.5rem;
+  }
 }

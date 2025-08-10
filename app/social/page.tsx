@@ -16,7 +16,7 @@ export default function SocialPage() {
             {/* Instagram Hub */}
             <div className="card social-platform">
               <div className="platform-header">
-                <div className="platform-icon instagram">📸</div>
+                <div className="platform-icon instagram">���</div>
                 <div>
                   <h2 className="text-2xl font-bold gradient-text">Instagram Fitness</h2>
                   <p className="text-lg">@FitLifePro_Official</p>
@@ -205,6 +205,13 @@ export default function SocialPage() {
                     <div>
                       <p className="content-title">2024 Fitness Industry Trends</p>
                       <p className="content-time">12:00 PM</p>
+                    </div>
+                  </div>
+                  <div className="content-item youtube">
+                    <span className="platform-badge">YT</span>
+                    <div>
+                      <p className="content-title">Full Body HIIT Workout</p>
+                      <p className="content-time">6:00 PM</p>
                     </div>
                   </div>
                 </div>

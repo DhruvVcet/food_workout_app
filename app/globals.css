@@ -509,6 +509,71 @@ body {
   border-radius: 16px;
 }
 
+/* Free Plan Page Styles */
+.exercise-list, .cooking-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.exercise-item, .tip-category {
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.exercise-item ul, .tip-list {
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+.exercise-item li, .tip-list li {
+  padding: 0.25rem 0;
+  color: #64748b;
+}
+
+.meal-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.meal-day {
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.meals p {
+  margin-bottom: 0.5rem;
+  color: #64748b;
+}
+
+.nutrition-guide ul {
+  list-style: none;
+}
+
+.nutrition-guide li {
+  padding: 0.5rem 0;
+  color: #64748b;
+}
+
+.challenge-card {
+  background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+  border: 2px solid #667eea20;
+}
+
+.challenge-benefits ul {
+  list-style: none;
+  text-align: left;
+  display: inline-block;
+}
+
+.challenge-benefits li {
+  padding: 0.25rem 0;
+  color: #059669;
+}
+
 /* Footer Styles */
 .footer {
   background: #1e293b;

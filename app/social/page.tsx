@@ -237,6 +237,13 @@ export default function SocialPage() {
                       <p className="content-time">2:00 PM</p>
                     </div>
                   </div>
+                  <div className="content-item youtube">
+                    <span className="platform-badge">YT</span>
+                    <div>
+                      <p className="content-title">Deadlift Form Tutorial</p>
+                      <p className="content-time">7:00 PM</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 

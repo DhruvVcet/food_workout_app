@@ -141,32 +141,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Social Media Integration */}
-      <section className="section-padding bg-gradient-to-r from-purple-100 to-blue-100">
-        <div className="container">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            Stay Connected & <span className="gradient-text">Get Inspired</span>
-          </h2>
-          <div className="grid grid-2">
-            <div className="card text-center">
-              <div className="social-icon">📸</div>
-              <h3 className="text-xl font-bold mb-4">Instagram Fitness Hub</h3>
-              <p className="mb-4">Weekly workout videos, transformation stories, and fitness tips delivered to your feed.</p>
-              <Link href="/social/instagram" className="btn btn-primary">
-                View Content
-              </Link>
-            </div>
-            <div className="card text-center">
-              <div className="social-icon">💼</div>
-              <h3 className="text-xl font-bold mb-4">LinkedIn Wellness</h3>
-              <p className="mb-4">Professional insights on fitness, workplace wellness, and career development in health industry.</p>
-              <Link href="/social/linkedin" className="btn btn-primary">
-                View Articles
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
 
 
     </div>

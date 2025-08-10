@@ -975,4 +975,18 @@ body {
   .social-login {
     gap: 0.5rem;
   }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
 }

@@ -592,6 +592,11 @@ body {
   align-items: center;
 }
 
+.auth-container-centered {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
 .auth-card {
   background: white;
   padding: 3rem;

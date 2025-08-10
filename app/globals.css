@@ -1008,6 +1008,10 @@ body {
   background: #1976d2;
 }
 
+.content-item.youtube .platform-badge {
+  background: #ff0000;
+}
+
 .content-title {
   font-weight: 500;
   font-size: 0.875rem;

@@ -905,6 +905,10 @@ body {
   background: linear-gradient(135deg, #42a5f5 0%, #1976d2 100%);
 }
 
+.platform-icon.youtube {
+  background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+}
+
 .content-schedule {
   margin-bottom: 2rem;
 }

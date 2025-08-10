@@ -740,6 +740,11 @@ body {
 
 .social-icon {
   font-size: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .auth-footer {

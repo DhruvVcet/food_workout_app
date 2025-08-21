@@ -2,9 +2,16 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { useAuth } from './AuthProvider'
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { user, signOut } = useAuth()
+
+  const handleSignOut = async () => {
+    await signOut()
+    window.location.href = '/'
+  }
 
   return (
     <nav className="navbar">
@@ -23,8 +30,20 @@ export default function Navigation() {
           </div>
 
           <div className="nav-actions">
-            <Link href="/login" className="btn btn-secondary">Login</Link>
-            <Link href="/signup" className="btn btn-primary">Sign Up</Link>
+            {user ? (
+              <div className="user-menu">
+                <span className="user-greeting">
+                  Hi, {user.user_metadata?.first_name || user.email?.split('@')[0]}!
+                </span>
+                <Link href="/dashboard" className="btn btn-secondary">Dashboard</Link>
+                <button onClick={handleSignOut} className="btn btn-primary">Sign Out</button>
+              </div>
+            ) : (
+              <>
+                <Link href="/login" className="btn btn-secondary">Login</Link>
+                <Link href="/signup" className="btn btn-primary">Sign Up</Link>
+              </>
+            )}
           </div>
 
           <button 
@@ -76,6 +95,18 @@ export default function Navigation() {
           align-items: center;
           gap: 1rem;
         }
+        
+        .user-menu {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        
+        .user-greeting {
+          color: #64748b;
+          font-weight: 500;
+          font-size: 0.875rem;
+        }
 
         .mobile-menu-btn {
           display: none;
@@ -121,6 +152,15 @@ export default function Navigation() {
 
           .nav-actions {
             display: none;
+          }
+          
+          .user-menu {
+            flex-direction: column;
+            gap: 0.5rem;
+          }
+          
+          .user-greeting {
+            font-size: 0.75rem;
           }
 
           .mobile-menu-btn {

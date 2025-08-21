@@ -1,6 +1,56 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { WorkoutService, Workout } from '../../lib/workouts'
+import { useAuth } from '../../components/AuthProvider'
+import WorkoutCard from '../../components/WorkoutCard'
 import Link from 'next/link'
 
 export default function ExercisesPage() {
+  const { user } = useAuth()
+  const [workouts, setWorkouts] = useState<Workout[]>([])
+  const [loading, setLoading] = useState(true)
+  const [selectedCategory, setSelectedCategory] = useState('all')
+
+  useEffect(() => {
+    loadWorkouts()
+  }, [selectedCategory, user])
+
+  const loadWorkouts = async () => {
+    setLoading(true)
+    try {
+      if (selectedCategory === 'all') {
+        // Load default workouts for demo
+        const defaultWorkouts = WorkoutService.getDefaultWorkouts()
+        const allWorkouts = [
+          ...defaultWorkouts.strength.map(w => ({ ...w, id: `strength-${Math.random()}`, user_id: user?.id || '', created_at: new Date().toISOString() })),
+          ...defaultWorkouts.cardio.map(w => ({ ...w, id: `cardio-${Math.random()}`, user_id: user?.id || '', created_at: new Date().toISOString() }))
+        ]
+        setWorkouts(allWorkouts)
+      } else {
+        const { workouts: categoryWorkouts } = await WorkoutService.getWorkoutsByCategory(selectedCategory, user?.id)
+        setWorkouts(categoryWorkouts || [])
+      }
+    } catch (error) {
+      console.error('Error loading workouts:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleStartWorkout = (workout: Workout) => {
+    // Navigate to workout session
+    window.location.href = `/workout/${workout.id}`
+  }
+
+  const categories = [
+    { id: 'all', name: 'All Exercises', icon: '🏋️' },
+    { id: 'strength', name: 'Strength Training', icon: '💪' },
+    { id: 'cardio', name: 'Cardio', icon: '❤️' },
+    { id: 'flexibility', name: 'Flexibility', icon: '🤸‍♀️' },
+    { id: 'balance', name: 'Balance', icon: '⚖️' }
+  ]
+
   return (
     <div className="exercises-page">
       <section className="hero-section">
@@ -12,6 +62,62 @@ export default function ExercisesPage() {
 
       <section className="section-padding">
         <div className="container">
+          {/* Category Filter */}
+          <div className="category-filter mb-8">
+            <h2 className="text-2xl font-bold text-center mb-6">
+              <span className="gradient-text">Filter by Category</span>
+            </h2>
+            <div className="filter-buttons">
+              {categories.map(category => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`filter-btn ${selectedCategory === category.id ? 'active' : ''}`}
+                >
+                  <span className="filter-icon">{category.icon}</span>
+                  {category.name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Workouts Grid */}
+          {loading ? (
+            <div className="loading-state">
+              <div className="loading-spinner"></div>
+              <p>Loading workouts...</p>
+            </div>
+          ) : (
+            <div className="workouts-grid mb-8">
+              <h2 className="text-2xl font-bold mb-6">
+                <span className="gradient-text">
+                  {selectedCategory === 'all' ? 'All Workouts' : `${categories.find(c => c.id === selectedCategory)?.name} Workouts`}
+                </span>
+              </h2>
+              
+              {workouts.length > 0 ? (
+                <div className="grid grid-3">
+                  {workouts.map(workout => (
+                    <WorkoutCard
+                      key={workout.id}
+                      workout={workout}
+                      onStart={handleStartWorkout}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="empty-state">
+                  <p>No workouts found for this category.</p>
+                  {!user && (
+                    <p>
+                      <Link href="/login" className="signup-link">Sign in</Link> to access personalized workouts!
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Exercise Categories */}
           <div className="exercise-categories mb-8">
             <h2 className="text-3xl font-bold text-center mb-8">
@@ -75,7 +181,40 @@ export default function ExercisesPage() {
                     <li>• Plank variations</li>
                   </ul>
                 </div>
-                <button className="btn btn-primary w-full mt-4">Start Workout</button>
+                <button 
+                  onClick={() => {
+                    if (!user) {
+                      window.location.href = '/login'
+                      return
+                    }
+                    // Create and start HIIT workout
+                    const hiitWorkout: Workout = {
+                      id: 'hiit-' + Date.now(),
+                      user_id: user.id,
+                      name: 'Full Body HIIT',
+                      description: 'High-intensity interval training targeting all major muscle groups',
+                      duration: 30,
+                      difficulty: 'intermediate',
+                      category: 'cardio',
+                      exercises: [
+                        {
+                          name: 'Burpees',
+                          sets: 3,
+                          reps: 10,
+                          rest: 60,
+                          instructions: ['Start in standing position', 'Drop into squat, place hands on floor', 'Jump feet back to plank position', 'Do a push-up', 'Jump feet back to squat', 'Jump up with arms overhead'],
+                          muscle_groups: ['Full Body'],
+                          equipment: 'None'
+                        }
+                      ],
+                      created_at: new Date().toISOString()
+                    }
+                    handleStartWorkout(hiitWorkout)
+                  }}
+                  className="btn btn-primary w-full mt-4"
+                >
+                  Start Workout
+                </button>
               </div>
 
               <div className="card workout-card">
@@ -97,7 +236,18 @@ export default function ExercisesPage() {
                     <li>• Tricep dips</li>
                   </ul>
                 </div>
-                <button className="btn btn-primary w-full mt-4">Start Workout</button>
+                <button 
+                  onClick={() => {
+                    if (!user) {
+                      window.location.href = '/login'
+                      return
+                    }
+                    alert('Upper Body Strength workout will be available in the full version!')
+                  }}
+                  className="btn btn-primary w-full mt-4"
+                >
+                  Start Workout
+                </button>
               </div>
 
               <div className="card workout-card">
@@ -119,7 +269,18 @@ export default function ExercisesPage() {
                     <li>• Spinal twist</li>
                   </ul>
                 </div>
-                <button className="btn btn-primary w-full mt-4">Start Workout</button>
+                <button 
+                  onClick={() => {
+                    if (!user) {
+                      window.location.href = '/login'
+                      return
+                    }
+                    alert('Beginner Flexibility workout will be available in the full version!')
+                  }}
+                  className="btn btn-primary w-full mt-4"
+                >
+                  Start Workout
+                </button>
               </div>
             </div>
           </div>
@@ -447,6 +608,90 @@ export default function ExercisesPage() {
         </div>
       </section>
 
+      <style jsx>{`
+        .category-filter {
+          text-align: center;
+        }
+        
+        .filter-buttons {
+          display: flex;
+          gap: 1rem;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.75rem 1.5rem;
+          border: 2px solid #e2e8f0;
+          border-radius: 25px;
+          background: white;
+          color: #64748b;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover {
+          border-color: #667eea;
+          color: #667eea;
+        }
+        
+        .filter-btn.active {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          border-color: #667eea;
+          color: white;
+        }
+        
+        .filter-icon {
+          font-size: 1.25rem;
+        }
+        
+        .workouts-grid {
+          margin-bottom: 3rem;
+        }
+        
+        .loading-state {
+          text-align: center;
+          padding: 3rem 0;
+        }
+        
+        .loading-spinner {
+          width: 40px;
+          height: 40px;
+          border: 4px solid #f3f4f6;
+          border-top: 4px solid #667eea;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        
+        .empty-state {
+          text-align: center;
+          padding: 3rem 0;
+          color: #64748b;
+        }
+        
+        @media (max-width: 768px) {
+          .filter-buttons {
+            flex-direction: column;
+            align-items: center;
+          }
+          
+          .filter-btn {
+            width: 100%;
+            max-width: 250px;
+            justify-content: center;
+          }
+        }
+      `}</style>
     </div>
   )
 }
